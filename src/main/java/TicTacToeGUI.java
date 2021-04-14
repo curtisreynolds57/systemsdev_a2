@@ -5,18 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-
-
+//                       //
+// TIC TAC TOE GUI CLASS //
+//                       //
 public class TicTacToeGUI extends Application {
-
-//	private Scene sc1;
-//	private static Socket socket;
-//	private static int PORT = 4444;
-//	public static Button topCenter, topLeft, topRight, midLeft, midCenter, midRight, botLeft, botMid, botRight;
-//	private static String zero, one, two, three, four, five, six, seven, eight;
-//	private static BufferedReader in;
-//	private static PrintWriter out;
-//	private static ImageView icon, opponentIcon;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception{
