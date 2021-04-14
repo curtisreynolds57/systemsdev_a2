@@ -7,18 +7,27 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 
+
+    //              //
+    // SERVER CLASS //
+    //             //
 public class Server {
     private static ServerSocket serverSocket;
     private static ArrayList<Socket> sockets;
     private static Socket socket;
 
-
+    //
+    // Main Method
+    //
     public static void main(String[] args) {
         try {
             serverSocket = new ServerSocket(7777);
 
-            sockets = new ArrayList<>();
+            sockets = new ArrayList<>(); // Socket List
 
+            //
+            // Logging Players to the Console
+            //
             for (int i = 1; i < 3; i++) {
                 socket = serverSocket.accept();
                 System.out.println("Player " + i + " connected");
@@ -28,10 +37,14 @@ public class Server {
             Game game = new Game();
             System.out.println("Created game, waiting for players to connect");
 
+            // Assign Players to X, OR O
             Game.PlayerHandler playerX = game.new PlayerHandler(sockets.remove(sockets.size() - 1), 'X');
             Game.PlayerHandler playerO = game.new PlayerHandler(sockets.remove(sockets.size() - 1), 'O');
             game.currentPlayer = playerX;
 
+            //
+            // Start Game
+            //
             playerX.start();
             playerO.start();
             System.out.println("Game started");
@@ -44,8 +57,14 @@ public class Server {
     }
 
 
+    //            //
+    // GAME CLASS //
+    //            //
     static class Game {
 
+        //
+        // SIMULATE BOARD
+        //
         private PlayerHandler[] board = {
                 null, null, null,
                 null, null, null,
@@ -53,6 +72,7 @@ public class Server {
         };
         PlayerHandler currentPlayer;
 
+        // TIE CONDITIONAL
         public boolean isFull() {
             for (int i = 0; i < board.length; i++) {
                 if (board[i] == null) {
@@ -62,6 +82,9 @@ public class Server {
             return true;
         }
 
+        //
+        // WIN CONDITION
+        //
         public boolean hasWinner() {
             if (checkHorizontalWin() || checkVerticalWin() || checkDiagonalWin()) {
                 return true;
@@ -71,6 +94,9 @@ public class Server {
 
         }
 
+        // 
+        // CHECK BOARD FOR HORIZONTAL WINNERS
+        // 
         public boolean checkHorizontalWin() {
             if (board[0] != null && board[0] == board[1] && board[0] == board[2]) {
                 return true;
@@ -83,6 +109,10 @@ public class Server {
             }
         }
 
+        
+        // 
+        // CHECK BOARD FOR VERTICAL WINNERS
+        // 
         public boolean checkVerticalWin() {
             if (board[0] != null && board[0] == board[3] && board[0] == board[6]) {
                 return true;
@@ -95,6 +125,9 @@ public class Server {
             }
         }
 
+        // 
+        // CHECK BOARD FOR DIAGONAL WINNERS
+        // 
         public boolean checkDiagonalWin() {
             if (board[0] != null && board[0] == board[4] && board[0] == board[8]) {
                 return true;
@@ -105,8 +138,10 @@ public class Server {
             }
         }
 
+        //
+        // SIMULATE PLAYER MOVES
+        //
         public synchronized boolean move(PlayerHandler player, int location) { //A player moves based on their assigned Piece
-            System.out.println("Player moved at location " + location);
             if (board[location] == null) {
                 board[location] = player;
                 currentPlayer = currentPlayer.opponent;
@@ -115,7 +150,11 @@ public class Server {
             }
             return false;
         }
-
+        
+        
+        //                        //
+        //   PLAYER HANDLER CLASS //
+        //                        //
         class PlayerHandler extends Thread {
             private char mark;
             private String name;
@@ -131,13 +170,6 @@ public class Server {
                 this.mark = mark;
             }
 
-//            public void close(){
-//                out.close();
-//                in.close();
-//                socket.close();
-//
-//            }
-
             private void opponentMoved(int location) {
                 out.println("OPPONENT_MOVED" + location);
                 out.println(
@@ -146,8 +178,6 @@ public class Server {
 
             public void run() {
                 System.out.println("running");
-
-
                         try {
                             in = new BufferedReader(
                                     new InputStreamReader(socket.getInputStream()));
@@ -175,18 +205,6 @@ public class Server {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-//                        finally{
-//                            try{
-//                                in.close();
-//                            }catch(IOException e){
-//                                e.printStackTrace();
-//                            }
-//                        }
-
-
-
-
 
                     }
 
