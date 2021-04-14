@@ -14,15 +14,17 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+//                               //
+//  TIC TAC TOE CONTROLLER CLASS //
+//                               //
 public class TicTacToeController implements Initializable {
 
     private static Socket socket;
     private static PrintWriter out;
     private static BufferedReader in;
-    private static Image Circle = new Image("./Circle.png");
-    private static Image Cross = new Image("./Cross.png");
+    private static Image Circle = new Image("./Circle.png"); // o
+    private static Image Cross = new Image("./Cross.png"); // x
     private static ImageView icon, opponentIcon;
-
 
 
     @FXML
