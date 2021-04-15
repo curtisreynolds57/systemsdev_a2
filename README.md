@@ -28,3 +28,11 @@ The client will connect and will be able to play a tic-tac-toe game with another
 What did not have enough time to get this one hundred percent running for everyone. If it doesn't run for you,
 we have the video attached with the deliverables that shows it running. We could have also improved our usage
 of GitHub, as we mostly shared through Direct Messages.
+
+**Resources**
+-
+https://www.codota.com/code/java/classes/com.sun.corba.se.impl.logging.IORSystemException , 
+https://docs.oracle.com/javafx/2/ui_controls/button.htm ,
+https://yakovfain.com/2014/11/20/tic-tac-toe-in-javafx/ ,
+https://docs.oracle.com/javase/7/docs/api/java/net/ServerSocket.html ,
+https://www.geeksforgeeks.org/multithreaded-servers-in-java/
