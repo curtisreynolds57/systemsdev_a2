@@ -4,7 +4,7 @@ Made in part by Nicholas Drapak, Jonithan James, and Curtis Reynolds.
 
 **Project Information**
 -
-This project involves everything we have learned so far in 2020u. 
+This project involves everything we have learned so far in 2020u.
 It includes graphics, server sockets and connections, and the best-looking coding practices taught.
 The client will connect and will be able to play a tic-tac-toe game with another connected client.
 
@@ -16,7 +16,15 @@ The client will connect and will be able to play a tic-tac-toe game with another
 2. Follow installer instructions to complete the download.
 3. Once complete, extract downloaded folder to a location you will remember.
 4. Download IntelliJ here https://www.jetbrains.com/idea/.
+5. Navigate to the projects src folder in the terminal
+6. Type 'javac Server.java' then enter.
+7. Type 'java Server' the enter.
+8. In two separate terminal screens, type the command 'javac TicTacToeGUI.java'
+9. Type 'java TicTacToeGUI'. Repeat these steps a second time for the second player.
+10. Press play button on both client sides to connect to the server, and start the game.
 
-**Documentation**
+**Possible Improvements**
 -
-N/A
+What did not have enough time to get this one hundred percent running for everyone. If it doesn't run for you,
+we have the video attached with the deliverables that shows it running. We could have also improved our usage
+of GitHub, as we mostly shared through Direct Messages.
