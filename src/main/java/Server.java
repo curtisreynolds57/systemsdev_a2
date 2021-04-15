@@ -176,20 +176,26 @@ public class Server {
                         hasWinner() ? "DEFEAT" : isFull() ? "TIE" : "");
             }
 
+            //Runs when a server is created
             public void run() {
                 System.out.println("running");
                         try {
+                            //Initializes socket reader and writer
                             in = new BufferedReader(
                                     new InputStreamReader(socket.getInputStream()));
                             out = new PrintWriter(socket.getOutputStream(), true);
                             out.println("WELCOME" + mark);
+
+                            //Reads from the socket
                             String response = in.readLine();
                             while(true) {
                                 do {
                                     while (response != null) {
+                                        //If the move command was given, sent that to console
                                         if (response.startsWith("MOVE")) {
                                             int location = Integer.parseInt(response.substring(4));
                                             System.out.println(location);
+                                            //If a player has won or tied, print that
                                             if (move(this, location)) {
                                                 out.println("VALID_MOVE" + "location");
                                                 out.println(hasWinner() ? "VICTORY"

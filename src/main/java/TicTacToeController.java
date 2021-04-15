@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 //                               //
 public class TicTacToeController implements Initializable {
 
+    //Class initializations
     private static Socket socket;
     private static PrintWriter out;
     private static BufferedReader in;
@@ -27,6 +28,7 @@ public class TicTacToeController implements Initializable {
     private static ImageView icon, opponentIcon;
 
 
+    //Initializes buttons
     @FXML
     Button topLeft, topRight, topCenter,
                 midLeft, midCenter, midRight,
@@ -37,6 +39,7 @@ public class TicTacToeController implements Initializable {
         public void initialize(URL url, ResourceBundle rb) {
         }
 
+        //Button press handlers
     @FXML
     public void handleSquareOneClick(ActionEvent event) {
         out.println("MOVE0");
@@ -92,6 +95,7 @@ public class TicTacToeController implements Initializable {
         System.out.println("bottom right");
     }
 
+    //Handles play button clicking
     @FXML
     public void handlePlayClick(ActionEvent event){
         try {
@@ -100,9 +104,11 @@ public class TicTacToeController implements Initializable {
             e.printStackTrace();
         }
     }
+    //Runs to play the game
         public void play() throws IOException {
             String welcome;
             try {
+                //Tries to connect to the server
                 connectToServer();
                 welcome = in.readLine();
                 System.out.println(welcome);
@@ -110,6 +116,7 @@ public class TicTacToeController implements Initializable {
                         char mark = welcome.charAt(7);
                         System.out.println("You are " + mark);
 
+                        //Initializes the player's mark
                         if (mark == 'X') {
                             icon = new ImageView(Cross);
                             opponentIcon = new ImageView(Circle);
@@ -129,6 +136,7 @@ public class TicTacToeController implements Initializable {
         }
 
 
+        //Processes player move
     public int playerMove(String response){
         if (response.startsWith("VALID_MOVE")) {
             int location = Integer.parseInt(response.substring(5));
@@ -163,6 +171,7 @@ public class TicTacToeController implements Initializable {
         }
         return -1;
     }
+    //Processes opponent move
     public int opponentMoved(String response){
             if (response.startsWith("OPPONENT_MOVED")) {
             int location = Integer.parseInt(response.substring(15));
@@ -198,6 +207,7 @@ public class TicTacToeController implements Initializable {
         return -1;
     }
 
+    //Connects to the server
     public static void connectToServer(){
         try {
             socket = new Socket("localhost", 7777);
